@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div :style="{fontSize:demofontsize + 'em'}">
+            <demo v-for="item in post" :key="item.id" :item="item" @bigfont="demofontsize += 0.1"></demo>
+        </div>
+    </div>
+
+    <template id="con">
+        <div> 
+            <button @click="$emit('bigfont')">点我</button>
+            <h1>{{ item.contant }}</h1>
+            <h2>{{ item.text }}</h2>
+        </div>
+    </template>
+
+    <script>
+        Vue.component('demo', {
+            props: ['item'],
+            template: '#con'
+        }) //组件要定义在vm实例上面，不然在浏览器会识别不到，会报组件未定义的错误
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                post: [{
+                        id: '1',
+                        contant: '组件内容1',
+                        text: '组件文本1'
+                    },
+                    {
+                        id: '2',
+                        contant: '组件内容2',
+                        text: '组件文本2'
+                    },
+                    {
+                        id: '3',
+                        contant: '组件内容3',
+                        text: '组件文本3'
+                    }
+                ],
+                demofontsize: 1
+
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

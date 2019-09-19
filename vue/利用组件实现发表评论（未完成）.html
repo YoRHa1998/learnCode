@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>评论</title>
+    <script src="vue2.6.10.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <ctn></ctn>
+
+        <hr>
+        <ul>
+            <li v-for="item in list" :key="item.id">
+                <span>评论人：{{item.name}}</span>
+                {{ item.text }}
+            </li>
+        </ul>
+
+        <!-- template中必须要用一个div标签把内容包起来 -->
+
+    </div>
+
+    <template id="tem1">
+        <div>
+            <div>
+                <p>评论人：</p>
+                <input type="text" v-model="name">
+            </div>
+            <div>
+                <p>评论内容：</p>
+                <input type="text" v-model="text">
+            </div>
+            <input type="button" value="发表评论" @click="add">
+        </div>
+    </template>
+
+    <script>
+        var addcomment = {
+            data() {
+                return {
+                    name: '',
+                    text: ''
+                }
+            },
+            template: "#tem1",
+            methods: {
+                add() {
+                    var comment = {
+                        id: Date.now(),
+                        name: this.name,
+                        text: this.text
+                    }
+                    alert('123')
+                }
+            }
+        }
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                text: '',
+                list: [{
+                        id: 1,
+                        name: "李白",
+                        text: "天生我才必有用"
+                    },
+                    {
+                        id: 2,
+                        name: "杜甫",
+                        text: "劝君更近一杯酒"
+                    },
+                    {
+                        id: 3,
+                        name: "坤哥",
+                        text: "谁能有我有钱？"
+                    }
+                ]
+            },
+            methods: {
+                add() {
+
+                }
+            },
+            components: {
+                'ctn': addcomment
+            }
+        })
+    </script>
+</body>
+
+</html>

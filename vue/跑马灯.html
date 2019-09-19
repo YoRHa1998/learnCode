@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue demo</title>
+    <script src="vue2.6.10.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="开始" @click="star">
+        <input type="button" value="停止" @click="stop">
+        <h4>{{ msg }}</h4>
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world!!!',
+                intervalid: null
+            },
+            methods: {
+                star() {
+                    if (this.intervalid != null) return;
+                    this.intervalid = setInterval(() => {
+                        var head = this.msg.substring(0, 1)
+                        var end = this.msg.substring(1)
+                        this.msg = end + head
+                    }, 400)
+                },
+                stop() {
+                    clearInterval(this.intervalid);
+                    this.intervalid = null;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

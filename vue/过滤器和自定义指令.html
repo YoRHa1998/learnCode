@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue2.6.10.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-color>{{ msg | change}}</p>
+    </div>
+
+    <script>
+        Vue.filter('change', function (msg) { //filter 和 filters 要区别是否带s 不带是全局的，带了是私有的
+            return msg.replace(/天气/g, '心情') //replace只替换首个字符串，如果要替换所有，要用正则表达式后面加g
+        })
+        Vue.directive('color', {   //directive 自定义指令
+            bind: function (el) {
+                el.style.color = 'red'
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '今天，我觉得天气不错，但不知道明天的天气怎样',
+            },
+            methods: {
+
+            },
+            filters: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

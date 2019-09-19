@@ -1,0 +1,117 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#all{
+	width: 100%;
+	height: 625px;
+	background-image:url("../image/section_2_bg.jpg");
+	background-size:contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	
+}
+#top{
+	width: 100%;
+	height:50px;
+	margin-top: 20px;
+	float: left;
+	/*border: 1px solid black;*/
+
+}
+#top ul{
+	list-style-type: none;
+	margin: 0px;
+	padding-left: 18%; 
+}
+#top li{
+	display: inline;
+	float: left;
+    margin-left: 10px;
+	
+
+}
+a:link,a:visited{
+	display: block;
+    text-decoration: none;
+    background-color: #00FFFF;
+    opacity: 0.5;
+    color: black;
+    width: 150px;
+    height: 47px;
+    font-size: 31px;
+    text-align: center;
+    border: 2px solid black;
+	border-radius: 25px;
+	transition: width 1s;
+}
+a:active,a:hover{
+	background-color: #00FFFF;
+	border: 1px solid #FFFF00;
+	width: 200px;
+	opacity: 0.5;
+}
+#container{
+	width: 100%;
+	height: 625px;
+	/*border: 1px solid black;*/
+}
+#container img{
+	float: right;
+}
+#beatiful{
+	position: relative;
+	left: -14%;
+	top: 60%;
+}
+#boatmain{
+	width: 320px;
+	height: 500px;
+	/*border: 1px solid black;*/
+	clear: left;
+	float: left;
+}
+#boat{
+	width: 250px;
+	height: 75px;
+	/*border: 1px solid black;*/
+	clear: left;
+	color: white;
+	font-style: italic;
+	font-size: 25px;
+}
+#gonggao{
+    width: 30px;
+    height: 170px;
+    /*border: 1px solid black;*/
+    color: white; 
+    overflow: hidden;
+    transition: width 2s;
+}
+#gonggao:hover{
+	width: 320px;
+}
+#gonggaohead{
+	width: 290px;
+	height: 15px;
+}
+#gonggaotext{
+	padding-left: 30px;
+	width: 290px;
+	height: 155px;
+}
+#slide{
+	width: 600px;
+	height: 300px;
+	/*border: 1px solid black;*/
+	float: left;
+	position: relative;
+	left: 2%;
+	top: -27%;
+	/*overflow: hidden;*/
+}
+
+
+
+

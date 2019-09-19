@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+  
+    //什么时候用Promise? 一般情况下是有异步操作时，使用Promise对这个异步操作进行封装
+    
+    // 1.Promise是一个类，所以使用时要用new
+    // 2.promise里需要传入一个参数，这个参数是一个函数
+    // 3.作为参数的这个函数中，也有两个参数，这两个参数也是函数，分别是resolve,reject，分别代表成功时和失败时调用
+    // 4.接着在里面写异步请求代码，这里用setTimeout代替
+    // 这就是链式编程
+
+    new Promise((resolve,reject)=>{
+      //这里执行异步请求代码
+      setTimeout(() => {
+
+        // 当请求成功执行的时候，我们会调用resolve函数,这时候会转到.then()函数中，在then中进行数据处理的函数，而
+        // .then中也有一个参数，这个参数也是一个函数
+        resolve('hello world')   //模拟获取到的数据
+
+        // 如果请求失败，则会调用reject函数,此时会转到.catch()中,和.then一样，也有一个为函数的参数
+        reject('err message')    //模拟错误信息
+
+      }, 1000)
+    }).then((data)=>{
+
+      //这里执行请求成功之后的数据处理代码
+      console.log(data);
+    }).catch((err)=>{
+
+      //这里执行请求失败之后的错误信息代码
+      console.log(err);
+    })
+  </script>
+</body>
+</html>

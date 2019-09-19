@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue2.6.10.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(80px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="按钮" @click="swi">
+        <!-- 注意  通过更改transition的name属性   style的类名可以不以.v-开头 而改成.设置的name名- 例如.my- -->
+        <transition>
+            <h3 v-if="flag">{{ msg }}</h3>
+        </transition>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                msg: '欢迎使用VUE动画'
+            },
+            methods: {
+                swi() {
+                    this.flag = !this.flag
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

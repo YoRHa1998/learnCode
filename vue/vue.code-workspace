@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"view-in-browser.customBrowser": "chrome",
+		"liveServer.settings.multiRootWorkspaceName": "jquery"
+	}
+}

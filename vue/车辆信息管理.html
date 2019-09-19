@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车辆信息管理</title>
+    <script src="vue2.6.10.js"></script>
+    <style>
+        td {
+            width: 300px;
+            height: 50px;
+            border: 1px black solid;
+            margin: 5px;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h4>id:</h4>
+            <input type="text" v-model="id">
+            <h4>name:</h4>
+            <input type="text" v-model="name">
+            <input type="button" value="添加" @click="add">
+            <h4>搜索关键字查询：</h4>
+            <input type="text" v-model="select" v-focus>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>产品名称</td>
+                    <td>登记时间</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in search(select)" :key="item.id">
+                    <td v-text="item.id"></td>
+                    <td v-text="item.cname"></td>
+                    <td>{{ item.ctime | timechange }}</td>
+                    <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        Vue.filter('timechange', function () {
+            var ft = new Date();
+            var y = ft.getFullYear();
+            var m = (ft.getMonth() + 1).toString().padStart(2, '0');
+            var d = ft.getDate().toString().padStart(2, '0');
+            var h = ft.getHours().toString().padStart(2, '0');
+            var f = ft.getMinutes().toString().padStart(2, '0');
+            var s = ft.getSeconds().toString().padStart(2, '0');
+            return `${y}-${m}-${d} ${h}:${f}:${s}`
+        })
+        Vue.directive('focus', { //directive 自定义全局指令  directives 自定义私有指令 要区别是否有带s
+            inserted: function (el) {
+                el.focus();
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                select: '',
+                list: [{
+                        id: 1,
+                        cname: '宝马',
+                        ctime: new Date()
+                    },
+                    {
+                        id: 2,
+                        cname: '大众',
+                        ctime: new Date()
+                    }
+
+                ]
+
+            },
+            methods: {
+                add() {
+                    var newlist = {
+                        id: this.id,
+                        cname: this.name,
+                        ctime: new Date()
+                    }
+                    this.list.push(newlist);
+                },
+                del(id) {
+                    var index = this.list.findIndex(item => {
+                        if (item.id == id) {
+                            return true
+                        }
+                    })
+                    this.list.splice(index, 1)
+                },
+                search(select) {
+                    var newlist = []
+                    this.list.forEach(item => {
+                        if (item.cname.indexOf(select) != -1) {
+                            newlist.push(item)
+                        }
+                    })
+                    return newlist
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

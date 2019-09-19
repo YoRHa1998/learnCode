@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+
+//当我们需要两个请求都成功时才能执行某些流程时，我们可以使用promise.all()方法，all()里需要传入一个数组的参数，
+//数组中便是我们的多个异步请求，只有当这些异步请求都成功时，才会调用.then方法执行数据的操作 
+
+Promise.all([  //注意：这里的参数是个数组
+   new Promise((resolve,reject)=>{
+     setTimeout(() => {
+       resolve({name:'codezlj',age:19,height:1.88})
+     }, 2000);
+   }),
+   new Promise((resolve,reject)=>{
+     setTimeout(() => {
+       resolve({name:'codewhy',age:18,height:1.88})
+     }, 1000);
+   })
+]).then(results=>{   //这里获得的结果results是个数组
+  console.log(results);
+})
+
+</script>
+
+</body>
+</html>
